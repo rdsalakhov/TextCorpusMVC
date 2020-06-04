@@ -1,0 +1,48 @@
+﻿@model  IEnumerable<TextCorpusMVC.Models.QueryResult>
+<div id="searchresults">
+    @if (Model.Count() == 0)
+    {
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    Нет результатов
+                </p>
+            </div>
+        </div>
+    }
+    @foreach (QueryResult result in Model)
+    {
+        <table class="table">
+            <tr>
+                <td>
+                    @result.TextName
+                </td>
+                <td>
+                    @{
+                        bool isHighlighted = false;
+                        for (int i = 0; i < result.Result.Length; i++)
+                        {
+                            if (result.StartPositions.Contains(i))
+                            {
+                                isHighlighted = true;
+                            }
+
+
+                            if (result.EndPositions.Contains(i))
+                            {
+                                isHighlighted = false;
+                            }
+                            if (isHighlighted)
+                            {<span class="yellow_bg">@result.Result[i]</span>}
+                        else
+                        {@result.Result[i]}
+                }
+                    }
+                </td>
+            </tr>
+        </table>
+
+    }
+</div>
+@Scripts.Render("~/scripts/jquery-3.4.1.js")
+@Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")

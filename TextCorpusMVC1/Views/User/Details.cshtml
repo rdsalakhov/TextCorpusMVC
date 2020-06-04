@@ -1,0 +1,58 @@
+﻿@model TextCorpusMVC.Models.User
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Подробнее</h2>
+
+<div>
+    <h4>Пользователь</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Логин
+            @Html.DisplayNameFor(model => model.Login)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Login)
+        </dd>        
+
+        <dt>
+            Статус
+            @Html.DisplayNameFor(model => model.IsAdmin)
+        </dt>
+
+        <dd>
+            @if (Model.IsAdmin)
+            {
+                <p>Администратор</p>
+            }
+            else
+            {
+                <p>Пользователь</p>
+            }
+        </dd>
+
+        <dt>
+            Доступные тексты
+        </dt>
+        <dd>
+            @if (ViewBag.Texts.Count == 0)
+            {
+                <p>-</p>
+            }
+            @foreach (var text in ViewBag.Texts)
+            {
+                @text
+                <br />
+            }
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Назад к списку", "Index")
+</p>

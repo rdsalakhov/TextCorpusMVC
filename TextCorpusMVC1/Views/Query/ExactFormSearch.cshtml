@@ -1,0 +1,23 @@
+﻿@model IEnumerable<TextCorpusMVC.Models.QueryResult>
+@{
+    ViewBag.Title = "ExactFormSearch";
+}
+<h2>Поиск точных форм</h2>
+@using (Ajax.BeginForm("ExactFormSearch", new AjaxOptions { UpdateTargetId = "results" }))
+{ 
+  <div class="form-horizontal">  
+    <div class="row">
+        <div class="col-md-6">
+            <p>
+                <input name="exactForm" class="btn btn-default" />
+                <input type="submit" value="Поиск" class="btn btn-default" />
+            </p>
+        </div>
+    </div>
+  </div>
+}
+<div class="form-group" id="results"></div>
+@Scripts.Render("~/scripts/jquery-1.10.2.min.js")
+@Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
+
+

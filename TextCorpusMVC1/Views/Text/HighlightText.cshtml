@@ -1,0 +1,21 @@
+﻿@model HighlightedText
+<div id="highlightedText"> 
+@{
+    bool isHighlighted = false;
+    for (int i = 0; i < Model.Text.Txt.Length; i++)
+    {
+        if (Model.StartPositions.Contains(i))
+        {
+            isHighlighted = true;
+        }
+        if (Model.EndPositions.Contains(i))
+        {
+            isHighlighted = false;
+        }
+        if (isHighlighted)
+        {<span style="background-color : rgba(0, 193, 255, 0.71)">@Model.Text.Txt[i]</span>}
+        else
+        {@Model.Text.Txt[i]}
+    }
+}               
+</div>

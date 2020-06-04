@@ -1,0 +1,41 @@
+﻿@model IEnumerable<TextCorpusMVC.Models.Text>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Список текстов</h2>
+
+<p>
+    @Html.ActionLink("Добавить текст", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Название
+        </th>
+        <th>
+            Текст
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+     {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Txt)
+            </td>
+            <td>
+                <ul style="list-style-type : none">
+                    <li>@Html.ActionLink("Подробнее", "Details", new { id = item.Id })</li>
+                    <li>@Html.ActionLink("Редактировать", "Edit", new { id = item.Id })</li>
+                    <li>@Html.ActionLink("Удалить", "Delete", new { id = item.Id })</li>
+                </ul>
+            </td>
+
+        </tr>
+     }
+</table>
